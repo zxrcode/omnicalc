@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../widgets/gradient_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,6 +58,130 @@ class _HomeScreenState extends State<HomeScreen>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void _showAboutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1A2E),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        contentPadding: const EdgeInsets.all(24),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF8B83FF), Color(0xFF6C63FF)],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Icon(
+                  Icons.calculate_rounded,
+                  size: 40,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'OmniCalc App',
+                style: GoogleFonts.outfit(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white,
+                ),
+              ),
+              const Text(
+                'Нұсқасы: 1.0.0 (Release)',
+                style: TextStyle(color: Color(0xFF8B83FF), fontSize: 14),
+              ),
+              const SizedBox(height: 20),
+              _buildInfoRow(Icons.person_outline, 'Әзірлеуші:', 'А. Д. Дүйсеғали'),
+              _buildInfoRow(Icons.school_outlined, 'Тобы:', 'ИНФ-24-1 студенті'),
+              _buildInfoRow(Icons.history_edu, 'Оқытушы:', 'И. Д. Баткамбаева'),
+              const Divider(color: Color(0xFF2A2A4A), height: 32),
+              const Text(
+                'Жауапкершілілттен бас тарту (Disclaimer):',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Бұл бағдарламалық жасақтама «Мобильді құрылғыларға арналған бағдарламалау» оқу курсы аясында әзірленген. Барлық зияткерлік меншік құқықтары авторға тиесілі.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Color(0xFFAAAAAA), fontSize: 12),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '🛠 Технологиялар: Flutter SDK & Material3',
+                style: TextStyle(color: Color(0xFF03DAC6), fontSize: 12),
+              ),
+              const SizedBox(height: 16),
+              TextButton.icon(
+                onPressed: () async {
+                  final url = Uri.parse('https://github.com/zxrcode/omnicalc');
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url);
+                  }
+                },
+                icon: const Icon(Icons.code, size: 18),
+                label: const Text('GitHub-тағы жоба'),
+                style: TextButton.styleFrom(foregroundColor: const Color(0xFF8B83FF)),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Барлық құқықтар қорғалған © 2025-2026',
+                style: TextStyle(color: Color(0xFF555555), fontSize: 11),
+              ),
+              const Text(
+                'Авторы: Дүйсеғали Аян',
+                style: TextStyle(color: Color(0xFF555555), fontSize: 11),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Жабу', style: TextStyle(color: Color(0xFF8B83FF))),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Icon(icon, size: 16, color: Colors.white54),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: const TextStyle(color: Colors.white54, fontSize: 13),
+          ),
+          const SizedBox(width: 4),
+          Expanded(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -133,22 +258,29 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               const SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'OmniCalc',
-                    style: GoogleFonts.outfit(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.white,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'OmniCalc',
+                      style: GoogleFonts.outfit(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const Text(
-                    'Математикалық қосымша',
-                    style: TextStyle(color: Colors.white70, fontSize: 13),
-                  ),
-                ],
+                    const Text(
+                      'Математикалық қосымша',
+                      style: TextStyle(color: Colors.white70, fontSize: 13),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                onPressed: () => _showAboutDialog(context),
+                icon: const Icon(Icons.info_outline, color: Colors.white70),
+                tooltip: 'Қосымша туралы',
               ),
             ],
           ),
