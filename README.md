@@ -157,14 +157,14 @@ flutter test
 
 ## 👨‍💻 Авторлар
 
-- **OmniCalc Team**
+- **Duisegali Ayan**
 
 ---
 
 ## 📞 Байланыс
 
-- 📧 Email: [your.email@example.com](mailto:your.email@example.com)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/omnicalc/issues)
+- 📧 Email: [zadxarring@gmail.com](mailto:zadxarring@gmail.com)
+- 🐛 Issues: [GitHub Issues](https://github.com/zxrcode/omnicalc/issues)
 
 ---
 
