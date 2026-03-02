@@ -114,7 +114,6 @@ class _ProgressionsScreenState extends State<ProgressionsScreen>
   }
 }
 
-// ─── Геометриялық прогрессия ───────────────────────────────────────────────
 class _GeometricTab extends StatefulWidget {
   const _GeometricTab();
 
@@ -144,16 +143,14 @@ class _GeometricTabState extends State<_GeometricTab> {
       return;
     }
 
-    // for циклі арқылы мүшелерді есептеу
     final terms = <double>[];
     for (int i = 0; i < n; i++) {
       terms.add(b1 * pow(q, i));
     }
 
-    // Қосынды: Sn = b1*(q^n - 1)/(q - 1)
     double sum;
     if ((q - 1).abs() < 1e-10) {
-      sum = b1 * n; // q = 1 болса
+      sum = b1 * n;
     } else {
       sum = b1 * (pow(q, n) - 1) / (q - 1);
     }
@@ -252,7 +249,6 @@ class _GeometricTabState extends State<_GeometricTab> {
   }
 }
 
-// ─── Арифметикалық прогрессия ──────────────────────────────────────────────
 class _ArithmeticTab extends StatefulWidget {
   const _ArithmeticTab();
 
@@ -282,15 +278,12 @@ class _ArithmeticTabState extends State<_ArithmeticTab> {
       return;
     }
 
-    // for циклі арқылы мүшелерді есептеу
     final terms = <double>[];
     for (int i = 0; i < n; i++) {
       terms.add(a1 + i * d);
     }
 
-    // Қосынды: Sn = n/2 * (2a1 + (n-1)*d)
     final sum = n / 2 * (2 * a1 + (n - 1) * d);
-    // n-ші мүше: an = a1 + (n-1)*d
     final an = a1 + (n - 1) * d;
 
     setState(() {
@@ -390,7 +383,6 @@ class _ArithmeticTabState extends State<_ArithmeticTab> {
   }
 }
 
-// ─── Жалпы виджеттер ───────────────────────────────────────────────────────
 Widget _buildFormulaCard(String title, String f1, String f2, Color color) {
   return Container(
     width: double.infinity,

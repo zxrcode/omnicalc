@@ -64,7 +64,6 @@ class _GuessGameScreenState extends State<GuessGameScreen>
       return;
     }
 
-    // Цикл арқылы қанша қадам қалғанын есептеу (while + шарт)
     _attemptsLeft--;
     _history.add(
       _Attempt(
@@ -92,7 +91,6 @@ class _GuessGameScreenState extends State<GuessGameScreen>
         _hint = 'Дұрыс жауабы: $_secret еді.';
       });
     } else {
-      // if-else шарты арқылы нұсқау беру
       if (guess < _secret) {
         setState(() {
           _hint = 'Сіз енгіздіңіз: $guess — бұл саннан көбірек 🔼';

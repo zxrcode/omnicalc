@@ -20,13 +20,11 @@ class _TriangleScreenState extends State<TriangleScreen> {
   String? _errorMessage;
   _TriangleResult? _result;
 
-  // Шеңбер радиусын есептеу (Гессен формула)
   double _heron(double a, double b, double c) {
     final p = (a + b + c) / 2;
     return sqrt(p * (p - a) * (p - b) * (p - c));
   }
 
-  // Радиан → Градус
   double _toDeg(double rad) => rad * 180 / pi;
 
   void _calculate() {
@@ -36,7 +34,6 @@ class _TriangleScreenState extends State<TriangleScreen> {
     final b = double.parse(_bCtrl.text.trim());
     final c = double.parse(_cCtrl.text.trim());
 
-    // Үшбұрыш теңсіздігін тексеру (цикл арқылы)
     final sides = [a, b, c];
     bool valid = true;
     for (int i = 0; i < sides.length; i++) {
@@ -61,8 +58,6 @@ class _TriangleScreenState extends State<TriangleScreen> {
 
     // Периметр
     final perimeter = a + b + c;
-
-    // Аудан (Герон формуласы)
     final area = _heron(a, b, c);
 
     // Бұрыштар (косинустар теоремасы)
@@ -70,7 +65,6 @@ class _TriangleScreenState extends State<TriangleScreen> {
     final angleB = _toDeg(acos((a * a + c * c - b * b) / (2 * a * c)));
     final angleC = 180 - angleA - angleB;
 
-    // Үшбұрыш түрін анықтау (шарттар арқылы)
     String type;
     if ((angleA - 90).abs() < 0.001 ||
         (angleB - 90).abs() < 0.001 ||
@@ -384,7 +378,6 @@ class _TriangleResult {
   });
 }
 
-// Үшбұрыш суреті
 class _TrianglePainterWidget extends StatelessWidget {
   final double a, b, c;
   const _TrianglePainterWidget({

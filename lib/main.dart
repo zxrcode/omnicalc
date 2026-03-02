@@ -30,7 +30,6 @@ class OmniCalcApp extends StatelessWidget {
       brightness: Brightness.dark,
       primary: const Color(0xFF8B83FF),
       secondary: const Color(0xFF03DAC6),
-      // ignore: deprecated_member_use
       tertiary: const Color(0xFFFF6584),
       surface: const Color(0xFF1A1A2E),
       surfaceContainerHighest: const Color(0xFF16213E),

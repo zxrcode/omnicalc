@@ -12,14 +12,12 @@ class Shapes3DScreen extends StatefulWidget {
 }
 
 class _Shapes3DScreenState extends State<Shapes3DScreen> {
-  // Лимит орнатылды ма?
   bool _limitSet = false;
   final _limitCtrl = TextEditingController();
   int _maxQueries = 0;
   int _usedQueries = 0;
 
-  // Таңдалған фигура
-  int _selectedShape = 0; // 0=Сфера, 1=Куб, 2=Пирамида, 3=Призма
+  int _selectedShape = 0;
   final List<_ShapeInfo> _shapes = const [
     _ShapeInfo(
       name: 'Сфера',
@@ -79,26 +77,25 @@ class _Shapes3DScreenState extends State<Shapes3DScreen> {
     double surface = 0, volume = 0;
     String formula = '';
 
-    // switch-case шарты арқылы фигура таңдау
     switch (_selectedShape) {
-      case 0: // Сфера
+      case 0:
         surface = 4 * pi * p0 * p0;
         volume = (4 / 3) * pi * pow(p0, 3);
         formula = 'S=4πr², V=4/3·πr³';
         break;
-      case 1: // Куб
+      case 1:
         surface = 6 * p0 * p0;
         volume = pow(p0, 3).toDouble();
         formula = 'S=6a², V=a³';
         break;
-      case 2: // Пирамида (дұрыс төртбұрышты)
+      case 2:
         final p1 = double.parse(_paramCtrls[1].text.trim());
         final slant = sqrt(pow(p0 / 2, 2) + pow(p1, 2));
         surface = p0 * p0 + 2 * p0 * slant;
         volume = (1 / 3) * p0 * p0 * p1;
         formula = 'S=a²+2a·l, V=1/3·a²·h';
         break;
-      case 3: // Призма (дұрыс төртбұрышты)
+      case 3:
         final p1 = double.parse(_paramCtrls[1].text.trim());
         surface = 2 * p0 * p0 + 4 * p0 * p1;
         volume = p0 * p0 * p1;
@@ -113,7 +110,6 @@ class _Shapes3DScreenState extends State<Shapes3DScreen> {
       formula: formula,
     );
 
-    // Тарихты жаңарту (цикл + limit шарты)
     setState(() {
       _result = r;
       _usedQueries++;
@@ -579,7 +575,6 @@ class _Shapes3DScreenState extends State<Shapes3DScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          // for цикл арқылы тарихты шығару
           for (int i = 0; i < _history.length; i++) ...[
             if (i > 0) const Divider(color: Color(0xFF2A2A4A), height: 1),
             Padding(
