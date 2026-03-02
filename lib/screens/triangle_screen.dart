@@ -396,15 +396,18 @@ class _TrianglePainterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 180,
       decoration: BoxDecoration(
         color: const Color(0xFF1A1A2E),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFF8B83FF).withOpacity(0.3)),
       ),
-      child: CustomPaint(
-        painter: _TrianglePainter(a: a, b: b, c: c),
-        child: const Center(),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: CustomPaint(
+          painter: _TrianglePainter(a: a, b: b, c: c),
+          child: const SizedBox.expand(),
+        ),
       ),
     );
   }
@@ -417,21 +420,39 @@ class _TrianglePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Координаталарды есептеу
-    final cosA = (b * b + c * c - a * a) / (2 * b * c);
+    double cosA = (b * b + c * c - a * a) / (2 * b * c);
+    cosA = cosA.clamp(-1.0, 1.0);
     final sinA = sqrt(1 - cosA * cosA);
 
-    final padding = 30.0;
-    final scale =
-        (size.width - padding * 2) /
-        (a + b).clamp(0.0001, double.infinity) *
-        0.9;
+    // Үшбұрыш төбелері (масштабталмаған)
+    final minX = min(0.0, b * cosA);
+    final maxX = max(c, b * cosA);
+    final minY = -b * sinA;
+    final maxY = 0.0;
 
-    final p1 = Offset(padding, size.height - padding);
-    final p2 = Offset(padding + c * scale, size.height - padding);
-    final p3 = Offset(
-      padding + b * cosA * scale,
-      size.height - padding - b * sinA * scale,
-    );
+    final triangleWidth = maxX - minX;
+    final triangleHeight = maxY - minY;
+
+    // Масштабты есептеу
+    const padding = 35.0;
+    final availableWidth = size.width - padding * 2;
+    final availableHeight = size.height - padding * 2;
+
+    double scale = 1.0;
+    if (triangleWidth > 0 && triangleHeight > 0) {
+      scale = min(
+        availableWidth / triangleWidth,
+        availableHeight / triangleHeight,
+      );
+    }
+
+    // Ортаға келтіру
+    final offsetX = (size.width - triangleWidth * scale) / 2 - minX * scale;
+    final offsetY = (size.height + triangleHeight * scale) / 2;
+
+    final p1 = Offset(offsetX, offsetY);
+    final p2 = Offset(offsetX + c * scale, offsetY);
+    final p3 = Offset(offsetX + b * cosA * scale, offsetY - b * sinA * scale);
 
     final paint = Paint()
       ..color = const Color(0xFF8B83FF)
@@ -468,17 +489,17 @@ class _TrianglePainter extends CustomPainter {
     }
 
     label(
-      Offset((p1.dx + p2.dx) / 2, p1.dy + 12),
+      Offset((p1.dx + p2.dx) / 2, p1.dy + 14),
       'c=${c.toStringAsFixed(1)}',
       const Color(0xFFFF6584),
     );
     label(
-      Offset((p1.dx + p3.dx) / 2 - 16, (p1.dy + p3.dy) / 2),
+      Offset((p1.dx + p3.dx) / 2 - 20, (p1.dy + p3.dy) / 2),
       'b=${b.toStringAsFixed(1)}',
       const Color(0xFF03DAC6),
     );
     label(
-      Offset((p2.dx + p3.dx) / 2 + 16, (p2.dy + p3.dy) / 2),
+      Offset((p2.dx + p3.dx) / 2 + 20, (p2.dy + p3.dy) / 2),
       'a=${a.toStringAsFixed(1)}',
       const Color(0xFFFFB347),
     );
