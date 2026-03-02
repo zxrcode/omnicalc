@@ -134,15 +134,18 @@ flutter test
 ## 📸 Скриншоттар
 
 <div align="center">
-
-| Басты бет | Үшбұрыш | Санды тап |
-|-----------|---------|-----------|
-| ![Басты бет](screenshots/photo_2026-03-02_18-22-41.jpg) | ![Үшбұрыш](screenshots/photo_2026-03-02_18-22-41\(2\).jpg) | ![Санды тап](screenshots/photo_2026-03-02_18-22-41\(3\).jpg) |
-
-| Прогрессиялар | 3D Фигуралар |
-|---------------|--------------|
-| ![Прогрессиялар](screenshots/photo_2026-03-02_18-22-41\(4\).jpg) | ![3D Фигуралар](screenshots/photo_2026-03-02_18-22-41\(5\).jpg) |
-
+  <table>
+    <tr>
+      <td><b>Басты бет</b><br><img src="screenshots/photo_2026-03-02_18-22-41.jpg" width="200"/></td>
+      <td><b>Үшбұрыш</b><br><img src="screenshots/photo_2026-03-02_18-22-41(2).jpg" width="200"/></td>
+      <td><b>Санды тап</b><br><img src="screenshots/photo_2026-03-02_18-22-41(3).jpg" width="200"/></td>
+    </tr>
+    <tr>
+      <td><b>Прогрессиялар</b><br><img src="screenshots/photo_2026-03-02_18-22-41(4).jpg" width="200"/></td>
+      <td><b>3D Фигуралар</b><br><img src="screenshots/photo_2026-03-02_18-22-41(5).jpg" width="200"/></td>
+      <td></td>
+    </tr>
+  </table>
 </div>
 
 ---
