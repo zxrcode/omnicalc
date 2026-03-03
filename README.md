@@ -141,8 +141,9 @@ flutter test
       <td><b>Санды тап</b><br><img src="screenshots/3.jpg" width="200"/></td>
     </tr>
     <tr>
-      <td><b>Прогрессиялар</b><br><img src="screenshots/4.jpg" width="200"/></td>
-      <td><b>3D Фигуралар</b><br><img src="screenshots/5.jpg" width="200"/></td>
+      <td><b>Геометриялық прогрессия</b><br><img src="screenshots/4.jpg" width="200"/></td>
+      <td><b>Арифметмикалық прогрессия</b><br><img src="screenshots/5.jpg" width="200"/></td>
+      <td><b>3D Фигуралар</b><br><img src="screenshots/6.jpg" width="200"/></td>
     </tr>
   </table>
 </div>
