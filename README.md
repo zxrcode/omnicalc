@@ -136,14 +136,13 @@ flutter test
 <div align="center">
   <table>
     <tr>
-      <td><b>Басты бет</b><br><img src="screenshots/photo_2026-03-02_18-22-41.jpg" width="200"/></td>
-      <td><b>Үшбұрыш</b><br><img src="screenshots/photo_2026-03-02_18-22-41(2).jpg" width="200"/></td>
-      <td><b>Санды тап</b><br><img src="screenshots/photo_2026-03-02_18-22-41(3).jpg" width="200"/></td>
+      <td><b>Басты бет</b><br><img src="screenshots/1.jpg" width="200"/></td>
+      <td><b>Үшбұрыш</b><br><img src="screenshots/2.jpg" width="200"/></td>
+      <td><b>Санды тап</b><br><img src="screenshots/3.jpg" width="200"/></td>
     </tr>
     <tr>
-      <td><b>Прогрессиялар</b><br><img src="screenshots/photo_2026-03-02_18-22-41(4).jpg" width="200"/></td>
-      <td><b>3D Фигуралар</b><br><img src="screenshots/photo_2026-03-02_18-22-41(5).jpg" width="200"/></td>
-      <td></td>
+      <td><b>Прогрессиялар</b><br><img src="screenshots/4.jpg" width="200"/></td>
+      <td><b>3D Фигуралар</b><br><img src="screenshots/5.jpg" width="200"/></td>
     </tr>
   </table>
 </div>
